@@ -1,6 +1,7 @@
-
 from database import Session
 from Models.booking import Booking
+from Models.activity import Activity
+from Models.user import User
 import datetime
 
 def add_booking(
