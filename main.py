@@ -1,4 +1,3 @@
-
 import psycopg2
 import csv
 import snowflake.connector
@@ -87,7 +86,7 @@ CREATE TABLE IF NOT EXISTS SF_SAMPLE.PUBLIC.Venture_bookings (
 );
 """
 snow_curs.execute(create_table_query)
-snow_curs.execute("USE SCHEMA SF_SAMPLE.Venture")
+snow_curs.execute("USE SCHEMA SF_SAMPLE.PUBLIC")
 sf_stage = '@~'
 
 # Upload CSV to Snowflake stage
@@ -97,7 +96,7 @@ snow_curs.execute(put_command).fetchall()
 snow_curs.execute("LIST @~").fetchall()
 
 # Load data into table
-table_name = "SF_SAMPLE.PUBLIC.Venture_bookings"
+table_name = "SF_SAMPLE.PUBLIC.VENTURE_BOOKINGS"
 copy_into_cmd = f"""
 COPY INTO {table_name}
 FROM {sf_stage}/{csv_file_name}.gz
